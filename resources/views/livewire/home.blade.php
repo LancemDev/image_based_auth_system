@@ -1,33 +1,46 @@
-<div class="container mx-auto max-w-md">
-<x-stat title="Messages" value="44" icon="o-envelope" tooltip="Hello" />
- 
-<x-stat
-    title="Sales"
-    description="This month"
-    value="22.124"
-    icon="o-arrow-trending-up"
-    tooltip-bottom="There" />
- 
-<x-stat
-    title="Lost"
-    description="This month"
-    value="34"
-    icon="o-arrow-trending-down"
-    tooltip-left="Ops!" />
- 
-<x-stat
-    title="Sales"
-    description="This month"
-    value="22.124"
-    icon="o-arrow-trending-down"
-    class="text-orange-500"
-    color="text-pink-500"
-    tooltip-right="Gosh!" />
+<div class="">
+    <x-nav sticky full-width>
+        
+        <x-slot:brand>
+            {{-- Drawer toggle for "main-drawer" --}}
+            <label for="main-drawer" class="lg:hidden mr-3">
+                <x-icon name="o-bars-3" class="cursor-pointer" />
+            </label>
 
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <x-menu>
-            <x-menu-item title="Logout" icon="s-chevron-left" onclick="event.preventDefault(); this.closest('form').submit();" />
+            {{-- Brand --}}
+            <div>App</div>
+        </x-slot:brand>
+
+        {{-- Right side actions --}}
+        <x-slot:actions>
+            <x-button label="Messages" icon="o-envelope" link="###" class="btn-ghost btn-sm" responsive />
+            <x-button label="Notifications" icon="o-bell" link="###" class="btn-ghost btn-sm" responsive />
+            <form method="POST" action="{{ route('logout') }}">
+            @csrf
+                <x-menu>
+                    <x-menu-item title="Logout" icon="s-chevron-left" onclick="event.preventDefault(); this.closest('form').submit();" />
+                </x-menu>
+            </form>
+        </x-slot:actions>
+    </x-nav>
+
+    <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-200">
+        <x-menu activate-by-route>
+            <x-menu-item title="Home" icon="o-home" link="###" />
+            <x-menu-item title="Messages" icon="o-envelope" link="###" />
         </x-menu>
-    </form>
+    </x-slot:sidebar>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @foreach($news as $article)
+        <div class="card">
+            <img src="{{ $article['urlToImage'] }}" alt="News Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ $article['title'] }}</h5>
+                <p class="card-text">{{ $article['description'] }}</p>
+                <a href="{{ $article['url'] }}" class="btn btn-primary" target="_blank">Read More</a>
+            </div>
+        </div>
+    @endforeach
+</div>
+
 </div>
