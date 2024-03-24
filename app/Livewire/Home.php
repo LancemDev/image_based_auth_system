@@ -21,7 +21,7 @@ class Home extends Component
         if (isset($responseData['articles'])) {
             $this->news = $responseData['articles'];
         } else {
-            // Log the entire response data to debug the issue
+            // Log the entire response data to debug the issue  yevhj
             dd($responseData);
             $this->news = [];
         }
