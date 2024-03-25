@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Mary\Traits\Toast;
+use Illuminate\Support\Str;
 
 
 class Home extends Component
@@ -21,6 +22,11 @@ class Home extends Component
     {
         $this->link = $url;
         $this->modal6 = true;
+    }
+    public function copyToClipboard()
+    {
+        $this->dispatch('copyToClipboard', $this->link);
+        $this->success('Link copied to clipboard!');
     }
 
     public function mount()

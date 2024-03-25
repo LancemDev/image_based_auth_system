@@ -13,8 +13,8 @@
 
         {{-- Right side actions --}}
         <x-slot:actions>
-            <x-button label="Notifications" icon="o-bell" onclick="modal2.showModal()" class="btn-ghost btn-sm" responsive />
             <x-theme-toggle />
+            <x-button label="Notifications" icon="o-bell" onclick="modal2.showModal()" class="btn-ghost btn-sm" responsive />
             <x-button label="{{ auth()->user()->name }}" icon="o-user" onclick="modal1.showModal()"  class="btn-ghost btn-sm" responsive />
         </x-slot:actions>
     </x-nav>
@@ -42,7 +42,7 @@
         </div>
     @endforeach
 
-    <x-modal class="backdrop-blur" wire:model="modal6">
+    <x-modal  wire:model="modal6">
         <x-input label="Copy Link" value="{{ $link }}" wire:model="link" icon="o-share" />
     </x-modal>
 </div>
@@ -54,5 +54,7 @@
 
 
 
+<script>
 
+</script>
 </div>
