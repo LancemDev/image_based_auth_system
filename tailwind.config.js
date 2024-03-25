@@ -10,6 +10,7 @@ export default {
         // Add mary
         "./vendor/robsontenorio/mary/src/View/Components/**/*.php"
     ],
+    darkMode: 'class',
     theme: {
         extend: {},
     },

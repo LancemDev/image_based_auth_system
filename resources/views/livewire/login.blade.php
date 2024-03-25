@@ -2,7 +2,7 @@
 <!-- <a class="underline" href="register">Don't have an Account? Register Here</a> -->
 <h2 class="font-mono text-2xl font-bold mb-6 text-center">Login</h2>
     <x-form  wire:submit="save">
-        <x-input label="Username" type="Username" wire:model="username" icon="o-user" />
+        <x-input label="Username" type="Username" wire:model="username" icon="o-user" inline />
         <x-button label="Search For Username" class="btn-primary" wire:click="search" spinner="save" />
         @if($userExists)
             <div class="grid grid-cols-3 gap-4">

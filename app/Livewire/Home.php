@@ -4,13 +4,28 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
+use Mary\Traits\Toast;
+
 
 class Home extends Component
 {
+    use Toast;
     public $news;
+    public $username;
+    public $link;
+    public $showModal = false;
+    public bool $modal6 = false;
+
+
+    public function share($url)
+    {
+        $this->link = $url;
+        $this->modal6 = true;
+    }
 
     public function mount()
     {
+       
         $response = Http::get('https://newsapi.org/v2/everything', [
             'q' => 'Kenya',
             'apiKey' => env('NEWS_API_KEY'),
@@ -26,6 +41,7 @@ class Home extends Component
             $this->news = [];
         }
     }
+    
 
     public function render()
     {

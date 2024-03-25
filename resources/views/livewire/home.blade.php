@@ -8,19 +8,14 @@
             </label>
 
             {{-- Brand --}}
-            <div>App</div>
+            <div>NewsApp</div>
         </x-slot:brand>
 
         {{-- Right side actions --}}
         <x-slot:actions>
-            <x-button label="Messages" icon="o-envelope" link="###" class="btn-ghost btn-sm" responsive />
-            <x-button label="Notifications" icon="o-bell" link="###" class="btn-ghost btn-sm" responsive />
-            <form method="POST" action="{{ route('logout') }}">
-            @csrf
-                <x-menu>
-                    <x-menu-item title="Logout" icon="s-chevron-left" onclick="event.preventDefault(); this.closest('form').submit();" />
-                </x-menu>
-            </form>
+            <x-button label="Notifications" icon="o-bell" onclick="modal2.showModal()" class="btn-ghost btn-sm" responsive />
+            <x-theme-toggle />
+            <x-button label="{{ auth()->user()->name }}" icon="o-user" onclick="modal1.showModal()"  class="btn-ghost btn-sm" responsive />
         </x-slot:actions>
     </x-nav>
 
@@ -38,9 +33,26 @@
                 <h5 class="card-title">{{ $article['title'] }}</h5>
                 <p class="card-text">{{ $article['description'] }}</p>
                 <a href="{{ $article['url'] }}" class="btn btn-primary" target="_blank">Read More</a>
+                <div class="mt-2">
+                    <button><i class="fas fa-thumbs-up"></i></button>
+                    <button wire:click="share('{{ $article['url'] }}')"><i class="fas fa-share-alt"></i></button>
+                    <button><i class="fas fa-comment"></i></button>
+                </div>
             </div>
         </div>
     @endforeach
+
+    <x-modal class="backdrop-blur" wire:model="modal6">
+        <x-input label="Copy Link" value="{{ $link }}" wire:model="link" icon="o-share" />
+    </x-modal>
 </div>
+
+<livewire:profile />
+<livewire:notifications />
+<livewire:make-comment />
+<livewire:view-comment />
+
+
+
 
 </div>
