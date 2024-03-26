@@ -101,6 +101,27 @@ class Home extends Component
             $this->news = [];
         }
     }
+
+    public function delete($url)
+    {
+        // Find the article in the database
+        $article = Article::where('url', $url)->first();
+
+        // Check if the article exists
+        if ($article) {
+            // Delete the article
+            $article->delete();
+
+            // Show a success message
+            $this->success('Article deleted successfully!');
+
+            // Refresh the component to show the updated list of articles
+            $this->mount();
+        } else {
+            // Show an error message
+            $this->error('Article not found!');
+        }
+    }
     
 
     public function render()

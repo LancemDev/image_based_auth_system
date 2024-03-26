@@ -42,6 +42,9 @@
                     <span>{{ $article['liked'] }}</span> Likes |
                     Comments: <span class="underline ml-2">{{ $article['comments'] ? $article['comments'] : 'None' }}</span>
                 </div>
+                @if(auth()->user()->email == 'admin@gmail.com')
+                    <button wire:click="delete('{{ $article['url'] }}')" class="btn btn-danger mt-2">Delete</button>
+                @endif
             </div>
         </div>
     @endforeach
